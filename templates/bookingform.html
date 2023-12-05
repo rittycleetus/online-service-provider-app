@@ -1,0 +1,63 @@
+
+
+
+{% extends 'navbar2.html' %}
+{% block content %}
+{% load static %}
+<br><br><br>
+
+
+<style>
+    body{
+        background-image: url('{% static "images/images.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+    label{
+        color: beige;
+    }
+    </style>
+    <body>
+        <h1 style="color: bisque;"><u>BOOKING FORM</u></h1>
+    <form action="{% url 'bookit1' q.id %}" method="post">
+        {% csrf_token %}
+
+
+
+        <label>Service name</label><br>
+        <input type="text" value="{{q.title}}"><br>
+        <br>
+        <br>
+        
+    <label>When do you want the service?</label><br>
+    <input type="date" name="day">
+    <br>
+
+        <br>
+   <br>
+    
+    <label>Where do you want the service?</label><br>
+    <input type="text" name="address" placeholder="address"><br><br>
+    <br>
+  
+<button type="submit" value="submit" class="btn-primary">BOOK</button>
+
+</form>
+{% if error == "no" %}
+<script>
+  alert('Successfully booked.  Please wait for approval');
+  window.location=("{% url 'nofitr' %}");
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+   alert('Something went wrong, Try Again');
+</script>
+{% endif %}
+
+{% endblock%}
+
+</body>
+</html>

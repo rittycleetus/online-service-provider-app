@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    {% block content %}
+    {% load static %}
+</head>
+
+
+<body>
+    
+    <h2 class="mb-4" style="text-align: center;"> MORE DETAILS</h2>
+<form action="{% url 'bookit' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="container col-sm-8">
+        
+        <br><br>
+        <center><img src="{{image.url}}" alt="" width="250" style='border-radius:30px;'></center><br>
+
+        <table class="table" border="3px black solid">
+            
+            <tr>
+                <th >NAME</th>
+                <th >CATEGORY</th>
+                <th >DESCRIPTION</th>
+                <th>DURATION</th>
+                <th>PRICE</th>
+                </tr>
+                {% for i in s %}
+                <tr>
+                    <td >{{i.title}}</td>
+                    <td >{{i.category.name}}</td>
+                    <td >{{i.description}}</td>
+                    <td>{{i.duration}}</td>
+                    <td>{{i.price}}</td>
+                </tr>
+                
+                {% endfor %}
+            
+                
+
+        <button type="submit" >BOOK NOW</button>
+    </table>
+    
+        
+        
+    </form>
+   
+   
+</div>
+
+{% endblock %}
+
+           
+
+          
+
+
+
+
+
+
+    </body>
+    </html>

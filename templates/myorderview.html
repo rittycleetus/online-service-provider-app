@@ -1,0 +1,94 @@
+{% extends 'navbar2.html' %}
+{% block content %}
+{% load static %}
+
+    <style>
+        h1{
+        color: black;
+        
+     
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size:50px;
+        text-align: center;
+        margin-top: 60px;
+        margin-left: 100px;
+    }
+    
+    
+body{
+    background-image: url('{% static "images/show1.jpg" %}');  
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+th{
+color: aliceblue;
+}
+td{
+    color: aqua;
+}
+th,td{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+</style>
+       
+        
+           
+                
+            
+            
+                         <h1>MY ORDERS</h1>
+<div style="overflow-x: auto;">
+        <table border="4px" style="margin-top: 40px;margin-left:50px;background-color: black;padding: 5px;">
+    
+            <tr>
+                
+                <th>SERVICE NAME</th>
+            
+                <th>DESCRIPTION</th>
+                <th>CATEGORY</th>
+                <th>DURATION</th>
+                <th>PRICE</th>
+                <th>DATE FOR SERVICE</th>
+                <th>ADDRESS</th>
+                <th>ACTIONS</th>
+    
+                
+            </tr>
+       
+          {% for i in b %}
+            
+            <tr>
+                
+                
+                <td>{{i.service.title}}</td>
+                <td>{{i.service.description}}</td>
+                <td>{{i.category.name}}</td>
+                <td>{{i.service.duration}}</td>
+                <td>{{i.service.price}}</td>
+                <td>{{i.date_booked|date:"Y- m- d" }}</td>
+                <td>{{i.address}}</td>
+                <td><button class="btn-primary">{% if i.is_approved %} Approved{% else %} </button><button class="btn-danger" >Denied {% endif %}</button></td>
+
+           
+            </tr>
+
+        
+            {% endfor %}
+
+    </center>
+    </table>
+    <br>
+    <br>
+    <center> <a href="{% url 'useraction1' %}" style="background-color: grey;margin: auto;" class="btn" >BACK</a></center>
+    </div>
+ 
+    
+    {% endblock %}
+           
+    
+
+
+  

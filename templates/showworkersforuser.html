@@ -1,0 +1,102 @@
+{% extends 'navbar2.html' %}
+{% block content %}
+{% load static %}
+
+    <style>
+        h1{
+        color: black;
+        
+     
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size:50px;
+        text-align: center;
+        margin-top: 60px;
+        margin-left: 100px;
+    }
+    
+    
+body{
+    background-image: url('{% static "images/show1.jpg" %}');  
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+th{
+color: aliceblue;
+}
+td{
+    color: aqua;
+}
+th,td{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+</style>
+       
+        
+           
+                
+            
+            
+                         <h1>WORKER DETAILS</h1>
+
+        <table border="4px" style="margin-top: 40px;margin-left:2px;background-color: black;padding: 5px;">
+    
+            <tr>
+                
+                <th>NAME</th>
+     
+                <th>EMAIL</th>
+                <th>CONTACT NUMBER</th>
+                <th>ADDRESS</th>
+                <th>CATEGORY</th>
+                <th>EXPERIENCE(IN YEARS)</th>
+                <th>ID PROOF</th>
+              
+                
+            
+                
+    
+                
+            </tr>
+       
+            {% for e in w %}
+            
+          
+            
+            <tr>
+                
+                <td><a href="{% url 'workercard' e.id %}">{{e.user.first_name}} {{e.user.last_name}}</a></td>
+                <td>{{e.user.email}}</td>
+                <td>{{e.phone}}</td>
+                <td>{{e.address}}</td>
+                <td>{{e.category.name}}</td>
+                <td>{{e.workexp}}</td>
+                <td><a href="{{e.idproof.url}}">{{e.idproof}}</td>
+                
+                
+                
+                
+
+                
+                
+
+                
+           
+            </tr>
+           
+            {% endfor %}
+            
+      
+        
+    </center>
+    </table>
+ 
+    
+    {% endblock %}
+           
+    
+
+
+  

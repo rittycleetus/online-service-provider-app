@@ -1,0 +1,38 @@
+
+{% extends 'navbar3.html' %}
+{% block content %}
+{% load static %}
+<style>
+    body{
+        background-image: url('{% static "images/bac.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<body>
+    <br>
+<br>
+<br>
+    <h1 style="color:orange;margin-top: 5px;">HELP IN LOVE-Home Services <b>(SERVICE MAN)</b></h1>
+
+<br>
+<br>
+
+    <div class="container row" style="display: flex;">
+    
+        <div class="col">
+            <a href="{% url 'workercard' w.id %}" style="text-decoration:none; font-size:30px; color:seagreen;"><img src="{% static 'images/useredit.jpg' %}" width="200" alt=""><br><b>SHOW PROFILE</b></a>
+        </div>
+      
+        <div class="col">
+            <a href="{% url 'workeredit' w.id %}" style="text-decoration:none; font-size:30px; color:seagreen;"><img src="{% static 'images/usericon.jpg' %}" width="200"  alt=""><br> <b>EDIT PROFILE</b></a>
+        </div>
+        
+        
+      </div>
+      <br>
+<br>
+<br><br>
+<br>
+<br>
+    {% endblock %}

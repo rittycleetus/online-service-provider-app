@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  {% block content %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>HELP IN LOVE</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+
+
+  <style>
+    form{
+        padding: 10px;
+    }
+</style>
+
+
+
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" >
+            <a class="navbar-brand" href="#"><img src="{% static 'images/logo.jpg' %}" alt="Your Logo"  width="70px" style="margin-left: 30px;" ></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNav">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                  <a class="dropdown-item" href="#" style="color: bisque;">Welcome {{user.username}}  </a>
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            
+                    <a class="nav-link btn btn-danger" style="color: white; width: 70%;margin-left: 25px;" href="{% url 'update_password' %}" id="link1" >Change Password <i class="fa-solid fa-user-md"></i></a>
+                    <a class="nav-link btn btn-danger" style="color: white; width: 70%;margin-left: 25px;" href="{% url 'logoutt' %}" id="link2" >Logout <i class="fa-solid fa-power-off"></i></a>
+                    <!-- <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href=""></a>
+                  </div> -->
+                </li>
+              </ul>
+            </div>
+            </nav>
+            <br>
+            <br><br>
+                        
+
+
+
+<div class="container col-6">
+    <h1>UPDATE YOUR SERVICE PROFILE</h1>
+<form action="{% url 'workeredit1' e.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label> First Name</label>
+          <input type="text" name="fname" class="form-control" value="{{e.user.first_name}}" style="background-color:peachpuff;">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Last Name</label>
+          <input type="text" name="lname" class="form-control"  value="{{e.user.last_name}}" style="background-color:peachpuff;">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label >Username</label>
+        <input type="text" name="uname" class="form-control"  value="{{e.user.username}}" style="background-color:peachpuff;">
+      </div>
+  
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" class="form-control"  value="{{e.user.email}}" style="background-color:peachpuff;">
+        </div>
+        <!-- <div class="form-group">
+          <label >Password</label>
+          <input type="password" name="agency" value="">
+        </div> -->
+        <div class="form-group">
+            <label>Contact Number</label>
+            <input type="text" name="ph" class="form-control"  value="{{e.phone}}" style="background-color:peachpuff;"  pattern="[1-9]{1}[0-9]{9}" >
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" name="address" class="form-control" value="{{e.address}}" style="background-color:peachpuff;">
+          </div>
+          
+   
+
+       
+        <div class="form-group">
+          <label >Service Category </label>
+          <input type="text" name="cat"  value="{{e.category.name}}" style="background-color:peachpuff;">
+        </div>
+        <div class="form-group">
+          <input type="hidden" name="text" value="3">
+        </div>
+     
+        <div class="form-group">
+          <label >Work Experience(in years) </label>
+          <input type="text" name="exp"  value="{{e.workexp}}" style="background-color:peachpuff;">
+        </div>
+
+        <!-- <div class="form-group">
+          <label >Select your service </label>
+          <input type="text" name="ser" placeholder="Work Experience">
+        </div> -->
+        <div class="form-group">
+          <label > Upload ID Proof</label>
+          <input  type="file" name="doc" value="{{e.idproof}}" style="background-color:peachpuff;"  accept="image/*" > 
+          </div>
+
+        <button type="submit" class="btn btn-primary">UPDATE</button>
+        <img src="{{e.idproof.url}}" style="width:90px;height:50px;"
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{e.idproof.url}}" style="width: 200px;height:100px;">
+      </form>
+      {% if error == "no" %}
+<script>
+  alert('Successfully updated');
+  window.location=("{% url 'workeraction1' %}");
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+   alert('Something went wrong, Try Again');
+</script>
+{% endif %}
+
+      <center> <a href="{% url 'workeraction1' %}" style="background-color: grey;margin: auto;" class="btn" >BACK</a></center>
+    </div>
+    {% endblock %}

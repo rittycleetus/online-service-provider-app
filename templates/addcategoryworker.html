@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>HELP IN LOVE</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <style>
+    /* Optional: Add custom styles for your navbar */
+    body {
+      padding-top: 56px;
+
+        background-image: url('{% static "images/images.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+
+
+.nav-link[data-toggle].collapsed:after {
+  content: "▾";
+}
+.nav-link[data-toggle]:not(.collapsed):after {
+  content: "▴";
+}
+
+
+@media screen and (max-width: 600px) {
+              .col-25, .col-75, input[type=submit] {
+                width: 100%;
+                margin-top: 0;
+              }
+            }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" >
+  <a class="navbar-brand" href="#"><img src="{% static 'images/logo.jpg' %}" alt="Your Logo"  width="70px" style="margin-left: 30px;" ></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse " id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="dropdown-item" href="#" style="color: bisque;">Welcome {{user.username}}  </a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          
+            
+          
+            
+          
+          
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+      
+    
+          <a class="nav-link btn btn-danger" style="color: white; width: 70%;margin-left: 25px;" href="{% url 'update_password' %}" id="link1" >Change Password <i class="fa fa-key"></i></a>
+          <a class="nav-link btn btn-danger" style="color: white; width: 70%;margin-left: 25px;" href="{% url 'logoutt' %}" id="link2" >Logout <i class="fa fa-power-off"></i></a>
+          <!-- <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href=""></a>
+        </div> -->
+      </li>
+
+      
+      
+
+      
+      
+      
+    </ul>
+  </div>
+</nav>
+<br>
+<br>
+<br>
+<div class="container col-12">
+  <div class="col-md-10">
+    {% for message in messages %}
+    <h5>
+        <div class="alert alert-danger mt-20">
+            {{ message }}
+        </div>
+    </h5>
+        {% endfor %} 
+</div>
+<div class="container" style="border: 2px solid black; width:300px">
+    <form action="{% url 'addcatworker' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class=" form-group col-6" style="margin: auto;margin-left: 150px;">
+            
+     
+        </div>
+    <label style="color: blanchedalmond;" >Add Service  Category </label>
+   
+    <input type="text" name="category1" placeholder="Add Category" style="height: 50px;">
+    <br>
+    <br>
+    <br>
+    <br>
+    <center><button type="submit"style="margin-right:30px;">SUBMIT</button></center>
+    </form>
+    
+</div>
+<br>
+<br>
+
+<center> <a href="{% url 'workeraction1' %}" class="btn btn-primary" >BACK</a>
+    <a href="{% url 'addserviceworker' %}"  class="btn btn-primary" >ADD SERVICE</a></center>
+<br>
+<br>
+<br>
+<div>
+  <center>
+<table style="background-color: gray;">
+  <tr><h3>SERVICES AVAILABLE</h3></tr>
+  {% for i in d %}
+  <tr >
+    <td>{{i.name}}</td>
+  </tr>
+  {% endfor %}
+</table>
+</center>
+</div>
+<br><br>
+<br>
+<br>
+<br><br>
+<br>
+
+
+
+<section class="footer" style="background-color: gray">
+    <footer>
+      <div class="footerContainer">
+        <img src="{% static 'images/logo.jpg' %}" style="width: 100px;height: 100px; justify-content: left;">
+          <p>HELP IN LOVE is an online Home Improvement aggregator, 
+            connecting homeowners <br>with the best home repair professionals in their neighbourhood.</p> 
+            </div>
+            <div class="footerContainer" style="float:right;" >SOCIAL LINKS<br>
+              <br><br>
+                <a href=""><i style="font-size: 40px;color: black;" class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href=""><i style="font-size: 40px;color: black;"class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href=""><i style="font-size: 40px;color: black;"class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href=""><i style="font-size: 40px;color: black;"class="fa fa-pinterest" aria-hidden="true"></i></a>
+            </div>
+        
+            <div class="footernav" style="margin: auto;text-align: center;"> 
+              <ul style="list-style-type: none;">
+                  <li><a href="" style="color: black;">Home</a></li>
+                  <li><a href="" style="color: black;">News</a></li>
+                  <li><a href="" style="color: black;">About</a></li>
+                  <li><a href="" style="color: black;">Contact Us</a></li>
+                  <li><a href="" style="color: black;">Our Team</a></li>
+              </ul>
+          </div>
+  
+          
+</footer>
+</section>
+</div>
+</body>
+</html>
+
+
+          

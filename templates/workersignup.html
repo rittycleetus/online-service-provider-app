@@ -1,0 +1,118 @@
+{% extends 'navbar1.html' %}
+{% block content %}
+{% load static %}
+<style>
+    form{
+        
+        border: 3px solid black;
+        padding: 10px;
+    }
+    body{
+        background-color:papayawhip;
+        
+    }
+</style>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container col-12">
+  <div class="col-md-10">
+    {% for message in messages %}
+    <h5>
+        <div class="alert alert-danger mt-20">
+            {{ message }}
+        </div>
+    </h5>
+        {% endfor %} 
+</div>
+    <h1>SERVICE MAN REGISTRATION</h1>
+<form action="{% url 'workeractionfake' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label> First Name</label>
+          <input type="text" name="fname" class="form-control"placeholder="First Name">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Last Name</label>
+          <input type="text" name="lname" class="form-control" placeholder="Last Name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label >Username</label>
+        <input type="text" name="uname" class="form-control"  placeholder="Username">
+      </div>
+     
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" class="form-control" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label>Contact Number</label>
+            <input type="text" name="ph" class="form-control" placeholder="Contact Number" pattern="[1-9]{1}[0-9]{9}">
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" name="address" class="form-control" placeholder="Address">
+          </div>
+
+
+        <div class="form-group">
+          <input type="hidden" name="text" class="form-control" value="3">
+        </div>
+        <div class="form-group">
+          <label >Name of Agency </label>
+          <input type="text" name="agency" class="form-control" placeholder="Agency">
+        </div>
+        <div class="form-group">
+          <label >Work Experience(in years) </label>
+          <input type="text" name="exp" class="form-control" placeholder="Work Experience">
+        </div>
+        <div class="form-group">
+          <label >Date of Birth </label>
+          <input type="date" name="dob" class="form-control" placeholder="Date of Birth">
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select name="category"  id="category" class="form-control">
+              <option value="">- Select your Service-</option>
+              {% for i in c %}
+              <option value="{{i.id}}">{{i.name}}</option>
+              {% endfor %}
+          </select>
+      </div>
+
+        <div class="form-group">
+          <label >Type of id </label>
+          <select name="idtype" style="width: 180px;" class="form-control"><br>
+            <option value="">--Select ID Proof!--</option>
+            <option value="Aadhar Card">Aadhar Card</option>
+            <option value="Voter ID Card">Voter ID Card</option>
+            <option value="PAN Card">Pan Card</option>
+            <option value="Lisence">Lisence</option>
+            <option value="Others">Others</option>
+        </select>
+      </div>
+        <!-- <div class="form-group">
+          <label >Select your service </label>
+          <input type="text" name="ser" placeholder="Work Experience">
+        </div> -->
+        <div class="form-group" >
+          <label > Upload ID Proof</label>
+          <input  type="file" name="doc"  class="form-control" required>
+<br>
+        <button type="submit" class="btn btn-primary">REGISTER</button>
+      </div>
+      </form>
+      </div>
+
+   
+    <br>
+    <br>
+    {% endblock %}
+  
+ 

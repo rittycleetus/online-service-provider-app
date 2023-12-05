@@ -1,0 +1,33 @@
+{% extends 'navbaruser.html' %}
+{% block content %}
+{% load static %}
+<style>
+    body{
+        background-image: url('{% static "images/bac2.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<body>
+<br><br>
+    <h1 style="color:orange;margin-top: 5px;margin-top: 20px;">HELP IN LOVE-Home Services <b>(USER)</b></h1>
+  <br>
+  <br>
+    <div class="container row" style="display: flex;justify-content: space-between;">
+    
+        <div class="col">
+            <a href="{% url 'useredit' u.id %}" style="text-decoration:none; font-size:30px; color:seagreen;"><img src="{% static 'images/useredit.jpg' %}" width="200" alt=""><br><b>EDIT PROFILE</b></a>
+        </div>
+      
+        <div class="col">
+            <a href="{% url 'usercard' u.id %}" style="text-decoration:none; font-size:30px; color:seagreen;"><img src="{% static 'images/usericon.jpg' %}" width="200"  alt=""><br> <b>SHOW PROFILE</b></a>
+        </div>
+        
+        <div class="col">
+            <a href="{% url 'myorderview' %}" style="text-decoration:none; font-size:30px; color:seagreen;"><img src="{% static 'images/order.png' %}" width="200"  alt=""><br> <b>MY ORDERS</b></a>
+        </div>
+        
+      </div>
+    {% endblock %}
+</body>
+</html>

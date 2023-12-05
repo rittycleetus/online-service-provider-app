@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>HELP IN LOVE</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <style>
+    /* Optional: Add custom styles for your navbar */
+    body {
+      padding-top: 56px;
+
+        background-image: url('{% static "images/images.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+label{
+  color: azure;
+}
+
+.nav-link[data-toggle].collapsed:after {
+  content: "▾";
+}
+.nav-link[data-toggle]:not(.collapsed):after {
+  content: "▴";
+}
+
+
+        
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" >
+  <a class="navbar-brand" href="#"><img src="{% static 'images/logo.jpg' %}" alt="Your Logo"  width="70px" style="margin-left: 30px;" ></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse " id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="dropdown-item" href="#" style="color: bisque;">Welcome {{user.username}}  </a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          
+            
+          
+            
+          
+          
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+      
+    
+          <a class="nav-link btn btn-danger" style="color: white; width: 70%;margin-left: 25px;" href="{% url 'update_password' %}" id="link1" >Change Password <i class="fa fa-key"></i></a>
+          <a class="nav-link btn btn-danger" style="color: white; width: 70%;margin-left: 25px;" href="{% url 'logoutt' %}" id="link2" >Logout <i class="fa fa-power-off"></i></a>
+          <!-- <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href=""></a>
+        </div> -->
+      </li>
+
+      
+      
+
+      
+      
+      
+    </ul>
+  </div>
+</nav>
+<br>
+<br>
+<br>
+<body>
+
+  <div class="container col-12">
+    <div class="col-md-10">
+      {% for message in messages %}
+      <h5>
+          <div class="alert alert-danger mt-20">
+              {{ message }}
+          </div>
+      </h5>
+          {% endfor %} 
+  </div>
+    <h1 style="text-align: center;color: azure;">Register New Service</h1>
+    <center>
+   <div class="container">
+   <form action="{% url 'addservice1' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label> Title</label>
+              <input type="text" name="sername" class="form-control" placeholder="Name of the service">
+            </div>
+       
+              <div class="form-group col-md-6">
+                <label> Image</label>
+                <input type="file" name="serimage" class="form-control" placeholder="image">
+              </div>
+     
+                <div class="form-group col-md-6">
+                  <label> Description</label>
+                  <input type="text" name="desc" class="form-control" placeholder="Description">
+                </div>
+
+
+                    
+                        <div class="form-group col-md-6">
+                                <label >Category</label>
+                                <select name="category"  id="category" class="form-control">
+                                  <option value="">- Select your Service-</option>
+                                  {% for i in c %}
+                                  <option value="{{i.id}}">{{i.name}}</option>
+                                  {% endfor %}
+                              </select>
+                                
+                </div>
+                               
+
+
+           
+                <div class="form-group col-md-6">
+                <label>Duration</label>
+                <input type="text" name="duration" class="form-control" placeholder="Time needed to complete">
+                </div>
+
+            
+                    <div class="form-group col-md-6">
+                    <label> Price</label>
+                    <input type="text" name="price" class="form-control" placeholder="Rate">
+                    </div>
+                    </div>
+
+                  </center>
+
+<center> <a href="{% url 'dash' %}" class="btn btn-primary" >BACK</a>
+  <button type="submit" class=" btn btn-primary">SUBMIT</button></center>
+
+</div>
+</div>
+</form>
+
+<br>
+<br>
+
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br><br>
+<br>
+
+<div>
+
+<section class="footer" style="background-color: gray">
+  <footer>
+    <div class="footerContainer">
+      <img src="{% static 'images/logo.jpg' %}" style="width: 100px;height: 100px; justify-content: left;">
+        <p>HELP IN LOVE is an online Home Improvement aggregator, 
+          connecting homeowners <br>with the best home repair professionals in their neighbourhood.</p> 
+          </div>
+          <div class="footerContainer" style="float:right;" >SOCIAL LINKS<br>
+            <br><br>
+              <a href=""><i style="font-size: 40px;color: black;" class="fa fa-facebook" aria-hidden="true"></i></a>
+              <a href=""><i style="font-size: 40px;color: black;"class="fa fa-twitter" aria-hidden="true"></i></a>
+              <a href=""><i style="font-size: 40px;color: black;"class="fa fa-instagram" aria-hidden="true"></i></a>
+              <a href=""><i style="font-size: 40px;color: black;"class="fa fa-pinterest" aria-hidden="true"></i></a>
+          </div>
+      
+          <div class="footernav" style="margin: auto;text-align: center;"> 
+            <ul style="list-style-type: none;">
+                <li><a href="" style="color: black;">Home</a></li>
+                <li><a href="" style="color: black;">News</a></li>
+                <li><a href="" style="color: black;">About</a></li>
+                <li><a href="" style="color: black;">Contact Us</a></li>
+                <li><a href="" style="color: black;">Our Team</a></li>
+            </ul>
+        </div>
+
+        
+</footer>
+</section>
+</div>
+{% block content %}
+{% endblock %}
+</body>
+</html>

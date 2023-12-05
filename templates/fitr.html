@@ -1,0 +1,56 @@
+{% extends 'navbar.html' %}
+{% block content %}
+{% load static %}
+
+
+
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">{{nam}}</h1>
+      <p class="lead"></p>
+    </div>
+  </div>
+  
+
+  <!------------------------- cards------------------ -->
+  <div class="container mt-5" style="display: flex;">
+    <div class="row">
+        
+
+        {% for i in ct %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <h1 class="display-4">{{i.category.name}}</h1>
+          <img src="{{i.image.url}}" class="card-img-top" style="min-height: 50vh;" alt="Image Alt Text"></div>
+          <div class="card-body">
+            <h5 class="card-title">{{i.title}}</h5>
+            <p class="card-text">{{i.desc}}</p>
+            <p class="card-text">{{i.price}}</p>
+          
+            <a href="{% url 'bookit' i.id %}" class="btn btn-primary">Add </a>
+           
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      
+      <!-- Add more cards as needed -->
+  
+
+      <!-- <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="https://placekitten.com/300/200" class="card-img-top" alt="Image Alt Text">
+          <div class="card-body">
+            <h5 class="card-title">Card Title 2</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Learn More</a>
+          </div>
+        </div>
+      </div> -->
+
+    </div>
+  </div>
+      
+
+{% endblock %}
