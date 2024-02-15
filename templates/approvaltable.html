@@ -1,185 +1,175 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  {% load static %}
-  {% block content %}
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  <title>HELP IN LOVE</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+{% extends 'navbaradmin1.html' %}
+{% block content %}
+{% load static %}
 
 
 
-
-    <style>
-        h1{
+<style>
+    h1 {
         color: black;
-        
-     
         font-family: Georgia, 'Times New Roman', Times, serif;
-        font-size:50px;
+        font-size: 50px;
         text-align: center;
         margin-top: 60px;
         margin-left: 100px;
+     
+            font-size: 2em; /* Adjust the font size as needed */
+            text-align: center;
     }
-    
-    
-body{
-    background-image: url('{% static "images/show1.jpg" %}');  
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-th{
-color: aliceblue;
-}
-td{
-    color: aqua;
-}
-th,td{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
-}
+
+    th {
+        color: aliceblue;
+    }
+
+    td {
+        color: aqua;
+    }
+
+    th,
+    td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    @media (max-width: 600px) {
+        .x {
+            overflow-x: scroll;
+            /* Set to "scroll" for a visible scrollbar on mobile */
+            white-space: nowrap;
+            /* Prevent line breaks on smaller screens */
+        }
+    }
 </style>
-       
-        <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" >
-    <a class="navbar-brand" href="#"><img src="{% static 'images/logo.jpg' %}" alt="Your Logo"  width="70px" style="margin-left: 30px;" ></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse " id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-          <a class="dropdown-item" href="#" style="color: bisque;">Welcome {{user.username}}  </a>
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-    
-            <a class="nav-link btn btn-danger" style="color: white; width: 70%;margin-left: 25px;" href="{% url 'update_password' %}" id="link1" >Change Password <i class="fa fa-key"></i></a>
-            <a class="nav-link btn btn-danger" style="color: white; width: 70%;margin-left: 25px;" href="{% url 'logoutt' %}" id="link2" >Logout <i class="fa fa-power-off"></i></a>
-            <!-- <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href=""></a>
-          </div> -->
-        </li>
-      </ul>
-    </div>
-    </nav>
-    <br>
-    <br><br>
-                
-            
-            
-                         <h1>SERVICE MAN REGISTER APPROVALS</h1>
-<div style="overflow-x: auto;">
-        <table border="4px" style="margin-top: 30px;margin-left:100px;background-color: black;padding: 5px;">
-    
-            <tr>
-                
-                <th>NAME</th>
-                <th>EMAIL</th>
-                <th>CONTACT NUMBER</th>
-                <th>ADDRESS</th>
-                <th>CATEGORY</th>
-                <th>EXPERIENCE(IN YEARS)</th>
-                <th>IDPROOF</th>
-                
-                <th>ACTION</th>
-                
-    
-                
-            </tr>
-       
-            {% for i in s %}
-            
-            <tr>
-                
-                <td>{{i.first_name}} {{i.last_name}}</a></td>
-                <td>{{i.email}}</td>
-                <td>{{i.phone}}</td>
-                <td>{{i.address}}</td>
-                <td>{{i.category.name}}</td>
-                <td>{{i.workexp}}</td>
-                <td><a href="{{u.idproof.url}}" target="_blank"  width="100" height="50" alt="Product 1">{{i.idproof}}</a></td>
-                <td><a href="{% url 'approve' i.id %}" class="btn btn-primary" style="width: 120px;">Approve</a><br>
-                <a href="{% url 'disapproval' i.id %}" class="btn btn-secondary" style="width: 120px;">Disapprove</a></td>
-                <td><a href="{% url 'workercard' i.id %}">View</a></td>
-                
-                
 
-                
-                
-
-                
-           
-            </tr>
-           
+<body>
+    <div class="container ">
+        <div class="col">
+            {% for message in messages %}
+            <h5>
+                <div class="alert " style="color: red;font-size: 15px;">
+                    {{ message }}
+                </div>
+            </h5>
             {% endfor %}
-            
-      
+        </div>
         
-    </center>
-    </table>
-    <br>
-    <br>
-   <center> <a href="{% url 'dash' %}" style="background-color: grey;margin: auto;" class="btn" >BACK</a></center>
-</div>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<section class="footer" style="background-color: gray">
-    <footer>
-      <div class="footerContainer">
-        <img src="{% static 'images/logo.jpg' %}" style="width: 100px;height: 100px; justify-content: left;">
-          <p>HELP IN LOVE is an online Home Improvement aggregator, 
-            connecting homeowners <br>with the best home repair professionals in their neighbourhood.</p> 
-            </div>
-            <div class="footerContainer" style="float:right;" >SOCIAL LINKS<br>
-              <br><br>
-                <a href=""><i style="font-size: 40px;color: black;" class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href=""><i style="font-size: 40px;color: black;"class="fa fa-twitter" aria-hidden="true"></i></a>
-                <a href=""><i style="font-size: 40px;color: black;"class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href=""><i style="font-size: 40px;color: black;"class="fa fa-pinterest" aria-hidden="true"></i></a>
-            </div>
-        
-            <div class="footernav" style="margin: auto;text-align: center;"> 
-              <ul style="list-style-type: none;">
-                  <li><a href="" style="color: black;">Home</a></li>
-                  <li><a href="" style="color: black;">News</a></li>
-                  <li><a href="" style="color: black;">About</a></li>
-                  <li><a href="" style="color: black;">Contact Us</a></li>
-                  <li><a href="" style="color: black;">Our Team</a></li>
-              </ul>
-          </div>
-    
-          
-    
-      </div>
-    
-      <div class="footerbottom">
-          <p style="color: black; text-align: center;border: 3px solid black;">Copyright &copy;2023;Designed by<span class="designer"> Ritty</span>
-    
-          </p>
-      </div>
-    </footer>
-    </section>
-    
-    
-    
-    </body>
-    </html>
-    {% endblock %}
-           
-    
+        <center>
+
+            <h1>SERVICE MAN REGISTER APPROVALS</h1>
 
 
-  
+            <div class="x">
+                {% if s %}
+                <table border="4px" style="margin-top: 30px;margin-left:2px;background-color: black;padding: 5px;">
+
+                    <tr>
+
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;NAME &nbsp;&nbsp; &nbsp;&nbsp;</th>
+                        <th>EMAIL</th>
+                        <th>CONTACT NUMBER</th>
+                        <th>ADDRESS</th>
+                        <th>CATEGORY</th>
+                        <th>EXPERIENCE</th>
+                        <th>IDPROOF</th>
+                        <th>SUPPORTING DOCUMENTS</th>
+
+                        <th>ACTION</th>
+
+
+
+                    </tr>
+
+                    {% for i in s %}
+
+                    <tr>
+
+                        <td style="text-transform: uppercase;">{{i.first_name}} {{i.last_name}}</a></td>
+                        <td>{{i.email}}</td>
+                        <td>{{i.phone}}</td>
+                        <td>{{i.address}}</td>
+                        <td>
+                          {% if i.newcategory %}
+                              {{ i.newcategory }}
+                          {% else %}
+                              {{ i.category.name }}
+                          {% endif %}
+                      </td>
+                        <td>{{i.workexp}}</td>
+
+                        <td><a href="{{i.idproof.url}}" width="100" height="50" alt="Product 1">Show ID Proof</a></td>
+                        <td><a href="{{i.documents.url}}" width="100" height="50" alt="Product 1">Show Certificate</a></td>
+                        <td>
+                            <a href="{% url 'approve' i.id %}" class="btn btn-primary" style="width: 120px;">Approve</a><br>
+                            <a href="{% url 'disapproval' i.id %}" class="btn btn-secondary"
+                                style="width: 120px;">Disapprove</a>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+
+</table>
+{% else %}
+                <p>No Registration Requests.</p>
+            {% endif %}
+            </div>
+<script>
+function showAlert() {
+    // Check if there are new category requests
+    if (newCategoryRequests === "true") {
+        var confirmation = confirm("New Category Request: {{ new_category_requests }}. Do you want to add a new category?");
+        if (confirmation) {
+            // User clicked "OK" - Redirect to show_notification
+            window.location.href = "{% url 'show_notification' %}";
+        } else {
+            // User clicked "Cancel" - You can perform additional actions here
+            alert("You clicked Cancel. No action taken.");
+        }
+    } else {
+        // No new category requests - You can perform additional actions here
+        alert("No new category requests.");
+    }
+}
+</script>
+            </div>
+        </center>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    {% if error == "no" %}
+    <script>
+        alert('Admin Approved');
+        window.location = ("{% url 'dash' %}");
+    </script>
+    {% endif %}
+
+    {% if error == "yes" %}
+    <script>
+        alert('Something went wrong, Try Again');
+    </script>
+    {% endif %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add an event listener for form submission
+            document.getElementById('categoryForm').addEventListener('submit', function (e) {
+                e.preventDefault(); // Prevent the default form submission
+    
+                // Add your code here to handle category form submission
+                // You may want to use AJAX to submit the form data without reloading the page
+    
+                // After handling the form submission, close the modal
+                $('#categoryModal').modal('hide');
+            });
+        });
+    </script>
+   
+</body>
+{% endblock %}

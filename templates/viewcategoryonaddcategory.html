@@ -1,0 +1,29 @@
+{% extends 'navbaradmin1.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <h1>Service Categories</h1>
+        <div class="row">
+            {% if categories %}
+                {% for category in categories %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card-deck">
+                            <div class="card">
+                                <!-- You can add an image field to ServiceCategory model if you want to display an image -->
+                                <!-- <img class="card-img-top" src="{{ category.image.url }}" alt="Card image cap"> -->
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: darkred;"><b>{{ category.name }}</b></h5>
+                                    <!-- You can add more details about the category here if needed -->
+                                    <!-- For example: <p class="card-text">{{ category.description }}</p> -->
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No service categories available.</p>
+            {% endif %}
+        </div>
+    </div>
+    <center> <a href="{% url 'addcategory' %}" style="background-color: grey;margin: auto;" class="btn">BACK</a></center>
+{% endblock %}

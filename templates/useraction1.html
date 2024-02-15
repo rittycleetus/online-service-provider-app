@@ -1,33 +1,37 @@
 {% extends 'navbaruser.html' %}
 {% block content %}
 {% load static %}
-<style>
-    body{
-        background-image: url('{% static "images/bac2.jpg" %}');
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-</style>
+
 <body>
-<br><br>
-    <h1 style="color:orange;margin-top: 5px;margin-top: 20px;">HELP IN LOVE-Home Services <b>(USER)</b></h1>
-  <br>
-  <br>
-    <div class="container row" style="display: flex;justify-content: space-between;">
+<h1><b>Home Services at your Doorstep</b></h1>
+<br><br><br>
+<div class="container" style="border: 1px black solid;">
+<h3>What Service are you looking for?</h3>
     
-        <div class="col">
-            <a href="{% url 'useredit' u.id %}" style="text-decoration:none; font-size:30px; color:seagreen;"><img src="{% static 'images/useredit.jpg' %}" width="200" alt=""><br><b>EDIT PROFILE</b></a>
+        <!-- Content above the cards if needed -->
+  
+    <!------------------------- cards for ServiceCategory------------------ -->
+
+    {% csrf_token %}
+    <div class="container mt-5">
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-md-4 mb-4">
+                <div class="card-deck">
+                    <div class="card">
+                        <!-- You can add an image field to ServiceCategory model if you want to display an image -->
+                        <!-- <img class="card-img-top" src="{{ category.image.url }}" alt="Card image cap"> -->
+                        <div class="card-body" style="background-color: rgb(207, 203, 203);">
+                            <h5 class="card-title"><a href="{% url 'usercategory' category.id %}" style="text-decoration: none;color: indigo;font-family: Georgia, 'Times New Roman', Times, serif;"><b>{{ category.name }}</b></a></h5>
+                            <!-- You can add more details about the category here if needed -->
+                            <!-- For example: <p class="card-text">{{ category.description }}</p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-      
-        <div class="col">
-            <a href="{% url 'usercard' u.id %}" style="text-decoration:none; font-size:30px; color:seagreen;"><img src="{% static 'images/usericon.jpg' %}" width="200"  alt=""><br> <b>SHOW PROFILE</b></a>
-        </div>
-        
-        <div class="col">
-            <a href="{% url 'myorderview' %}" style="text-decoration:none; font-size:30px; color:seagreen;"><img src="{% static 'images/order.png' %}" width="200"  alt=""><br> <b>MY ORDERS</b></a>
-        </div>
-        
-      </div>
-    {% endblock %}
+    </div>
+    </div>
 </body>
-</html>
+{% endblock %}

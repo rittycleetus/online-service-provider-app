@@ -1,0 +1,37 @@
+{% extends 'navbaradmin1.html' %}
+{% block content %}
+{% load static %}
+
+<body>
+<h1><b>Home Services at your Doorstep</b></h1>
+<br><br><br>
+<div class="container" style="border: 1px black solid;">
+<h3>What Service are you looking for?</h3>
+    
+        <!-- Content above the cards if needed -->
+  
+    <!------------------------- cards for ServiceCategory------------------ -->
+
+    {% csrf_token %}
+    <div class="container mt-5">
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-md-4 mb-4">
+                <div class="card-deck">
+                    <div class="card">
+                        <!-- You can add an image field to ServiceCategory model if you want to display an image -->
+                        <!-- <img class="card-img-top" src="{{ category.image.url }}" alt="Card image cap"> -->
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="#" style="text-decoration: none;"><b>{{ category.name }}</b></a></h5>
+                            <!-- You can add more details about the category here if needed -->
+                            <!-- For example: <p class="card-text">{{ category.description }}</p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+</body>
+{% endblock %}

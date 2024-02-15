@@ -1,0 +1,55 @@
+{% extends 'navbar4.html' %}
+{% block content %}
+{% load static %}
+
+
+
+<body>    
+
+    <div class="container col-sm-8">
+        
+        <br><br>
+  <center><h1 style="color: gray;">{{userprofile.user.first_name}}'s PROFILE</h1></center>
+        
+        <table class="table" border="3px black solid">
+            
+            <tr style>
+               <center><img src="{{userprofile.profile_picture.url}}" style="width:200px;height: 200px;"></center>
+               
+            </tr>
+         
+            <tr>
+                <th >First Name</th><td >{{userprofile.user.first_name}}</td>
+            </tr>
+            <tr>
+                <th >Last Name</th><td >{{userprofile.user.last_name}}</td>
+            </tr>
+            <tr>
+                <th >Username</th><td >{{userprofile.user.username}}</td>
+            </tr>
+            <tr>
+                <th>Email</th><td>{{userprofile.user.email}}</td>
+                
+            </tr>
+          
+            <tr>
+                <th>Phone</th><td>{{userprofile.ph}}</td>
+                
+            </tr>
+          
+        
+            <tr>
+                <th>Address</th><td>{{userprofile.address}}</td>
+            </tr>
+
+          
+    
+           
+ 
+           
+        </table>
+        <center> <a href="{% url 'useraction1' %}" style="background-color: grey;margin: auto;" class="btn" >BACK</a>
+            <a href="{% url 'useredit' userprofile.id %}" style="background-color: grey;margin: auto;" class="btn" >EDIT</a>
+            </center>
+
+{% endblock %}

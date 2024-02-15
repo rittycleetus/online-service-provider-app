@@ -1,190 +1,184 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  {% load static %}
-  {% block content %}
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  <title>HELP IN LOVE</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
+{% extends 'navbar3.html' %}
+{% block content %}
+{% load static %}
+<!-- Include the jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+<style>
+   
 
-    
-    <style>
-        h1{
+    .btn-approved {
+        background-color: green;
+        color: white;
+    }
+
+    .btn-disapproved {
+        background-color: red;
+        color: white;
+    }
+
+   
+ 
+
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        padding: 8px;
+        margin-bottom: 16px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    h1 {
         color: black;
-        
-     
         font-family: Georgia, 'Times New Roman', Times, serif;
-        font-size:50px;
+        font-size: 50px;
         text-align: center;
         margin-top: 60px;
         margin-left: 100px;
+     
+            font-size: 2em; /* Adjust the font size as needed */
+            text-align: center;
     }
-    
-    
-body{
-    background-image: url('{% static "images/bac2.jpg" %}');  
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-th{
-color: aliceblue;
-}
-td{
-    color: aqua;
-}
-th,td{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
-}
-</style>
-       
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" >
-        <a class="navbar-brand" href="#"><img src="{% static 'images/logo.jpg' %}" alt="Your Logo"  width="70px" style="margin-left: 30px;" ></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse " id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-              <a class="dropdown-item" href="#" style="color: bisque;">Welcome {{user.username}}  </a>
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        
-                <a class="nav-link btn btn-danger" style="color: white; width: 70%;margin-left: 25px;" href="{% url 'update_password' %}" id="link1" >Change Password <i class="fa fa-key"></i></a>
-                <a class="nav-link btn btn-danger" style="color: white; width: 70%;margin-left: 25px;" href="{% url 'logoutt' %}" id="link2" >Logout <i class="fa fa-power-off"></i></a>
-                <!-- <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href=""></a>
-              </div> -->
-            </li>
-          </ul>
-        </div>
-        </nav>
-        <br>
-        <br><br>
-                    
 
-           
-                
-            
-            
-                         <h1>SERVICES REQUESTS</h1>
-                         <div style="overflow-x: auto;">
-        <table border="4px" style="margin-top: 40px;margin-left:40px;background-color: black;padding: 5px;">
-    
+    th {
+        color: aliceblue;
+    }
+
+    td {
+        color: aqua;
+    }
+
+    th,
+    td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    @media (max-width: 600px) {
+        .x {
+            overflow-x: scroll;
+            /* Set to "scroll" for a visible scrollbar on mobile */
+            white-space: nowrap;
+            /* Prevent line breaks on smaller screens */
+        }
+    }
+</style>
+</head>
+
+<body>
+    <h1>SERVICES REQUESTS</h1>
+    <div class="x">
+        <table border="4px" style="margin-top: 40px;margin-left:1px;background-color: black;padding: 5px;">
+
             <tr>
-                <th>IMAGE</th>
-                <th>CUSTOMER NAME</th>
-                <th>SERVICE NAME</th>
-            
+                <th>CUSTOMER </th>
+                <th>SERVICE </th>
+
                 <th>DESCRIPTION</th>
                 <th>CATEGORY</th>
                 <th>DURATION</th>
                 <th>PRICE</th>
                 <th>DATE FOR SERVICE</th>
                 <th>ADDRESS</th>
-                <th>ACTIONS</th>
-                
-    
-                
+                <th>STATUS</th>
+                <th>ACTION</th>
             </tr>
-       
-          {% for i in s %}
+            {% if message %}
+            <p style="color: red;font-size: large;">{{ message }}</p>
+            {% else %}
+            {% for booking in s %}
 
-            
             <tr>
-                <td><img src="{{i.service.image.url}}" width="100" height="50" alt="Product 1"></td>
-                <td>{{i.customer.first_name}}</td>
-                <td>{{i.service.title}}</td>
-                <td>{{i.service.description}}</td>
-                <td >{{i.service.category.name}}</td>
-                <td>{{i.service.duration}}</td>
-                <td>{{i.service.price}}</td>
-                <td>{{i.date_booked|date:"Y-m-d"}}</td>
-                <td>{{i.address}}</td>
-                <td><a href="{% url 'approvalorder' i.id %}" class="btn btn-primary" style="width: 120px;">Approve</a><br>
-                    <a href="{% url 'disapprovalorder' i.id %}" class="btn btn-secondary" style="width: 120px;">Disapprove</a></td>
-                    
-
+                <!-- <td><img src="{{booking.service.image.url}}" width="100" height="50" alt="Product 1"></td> -->
+                <td><a href="{% url 'usercardbyworker' booking.customer.id %}" style="text-decoration:none;border:1px solid white;padding: 5px;text-transform: uppercase;">{{booking.customer.first_name}}</a></td>
+                <td>{{booking.service.title}}</td>
+                <td>{{booking.service.description}}</td>
+                <td>{{booking.service.category.name}}</td>
+                <td>{{booking.service.duration}}</td>
+                <td>{{booking.service.price}}</td>
+                <td>{{booking.date_booked|date:"d-m-Y"}}</td>
+                <td>{{booking.address}}</td>
+                <td>
+                    {% if booking.approval_status == 'approved' %}
+                    <button class="btn-approved">Approved</button>
+                    {% elif booking.approval_status == 'disapproved' %}
+                    <button class="btn-disapproved">Disapproved</button>
+                    {% else %}
+                    <a href="{% url 'approvalorder' booking.id %}" class="btn btn-primary" style="width: 100px;">Approve</a><br>
+                    <a href="{% url 'disapprovalorder' booking.id %}" class="btn btn-secondary" style="width: 100px;">Disapprove</a>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if booking.approval_status == 'approved' %}
+                    {% if not booking.is_completed %}
+                        <a href="#" class="btn btn-primary" style="width: 120px;" id="completeBtn_{{ booking.id }}" onclick="completeTask({{ booking.id }})">Mark Complete</a><br>
+                    {% else %}
+                        <button class="btn btn-success" style="width: 120px;" disabled>Completed</button>
+                    {% endif %}
+                {% endif %}
+                </td>
             </tr>
 
-        
             {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+    <script>
+        function confirmCompletion() {
+            return confirm("Are you sure you want to mark this task as completed?");
+        }
+    
+        function completeTask(bookingId) {
+            if (confirmCompletion()) {
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "{% url 'complete_task' %}");
+                
+                var inputBookingId = document.createElement("input");
+                inputBookingId.setAttribute("type", "hidden");
+                inputBookingId.setAttribute("name", "booking_id");
+                inputBookingId.setAttribute("value", bookingId);
+                
+                form.appendChild(inputBookingId);
+    
+                var inputCsrfToken = document.createElement("input");
+                inputCsrfToken.setAttribute("type", "hidden");
+                inputCsrfToken.setAttribute("name", "csrfmiddlewaretoken");
+                inputCsrfToken.setAttribute("value", "{{ csrf_token }}");
+    
+                form.appendChild(inputCsrfToken);
+    
+                document.body.appendChild(form);
+                form.submit();
+                var button = document.getElementById("completeBtn_" + bookingId);
+                button.innerText = "Completed";
+                button.className = "btn btn-success";
+                button.disabled = true;
+            }
+        }
 
-    </center>
-    </table>
-    </div>  
-    <center> <a href="{% url 'workeraction1' %}" style="background-color: grey;margin: auto;" class="btn" >BACK</a></center>
- 
+        $(document).ready(function () {
+            // Attach click event handlers to the approval and disapproval buttons
+            $('.btn-approval').click(function () {
+                // Change the button text to 'Approved' and apply the 'btn-approved' class
+                $(this).text('Approved').removeClass('btn-primary').addClass('btn-approved');
+            });
+
+            $('.btn-disapproval').click(function () {
+                // Change the button text to 'Disapproved' and apply the 'btn-disapproved' class
+                $(this).text('Disapproved').removeClass('btn-secondary').addClass('btn-disapproved');
+            });
+        });
+    </script>
     <br>
     <br>
     <br>
-    <section class="footer" style="background-color: gray">
-       <footer>
-         <div class="footerContainer">
-           <img src="{% static 'images/logo.jpg' %}" style="width: 100px;height: 100px; justify-content: left;">
-             <p>HELP IN LOVE is an online Home Improvement aggregator, 
-               connecting homeowners <br>with the best home repair professionals in their neighbourhood.</p> 
-               </div>
-               <div class="footerContainer" style="float:right;" >SOCIAL LINKS<br>
-                 <br><br>
-                   <a href=""><i style="font-size: 40px;color: black;" class="fa fa-facebook" aria-hidden="true"></i></a>
-                   <a href=""><i style="font-size: 40px;color: black;"class="fa fa-twitter" aria-hidden="true"></i></a>
-                   <a href=""><i style="font-size: 40px;color: black;"class="fa fa-instagram" aria-hidden="true"></i></a>
-                   <a href=""><i style="font-size: 40px;color: black;"class="fa fa-pinterest" aria-hidden="true"></i></a>
-               </div>
-           
-               <div class="footernav" style="margin: auto;text-align: center;"> 
-                 <ul style="list-style-type: none;">
-                     <li><a href="" style="color: black;">Home</a></li>
-                     <li><a href="" style="color: black;">News</a></li>
-                     <li><a href="" style="color: black;">About</a></li>
-                     <li><a href="" style="color: black;">Contact Us</a></li>
-                     <li><a href="" style="color: black;">Our Team</a></li>
-                 </ul>
-             </div>
-       
-             
-       
-         </div>
-       
-         <div class="footerbottom">
-             <p style="color: black; text-align: center;border: 3px solid black;">Copyright &copy;2023;Designed by<span class="designer"> Ritty</span>
-       
-             </p>
-         </div>
-       </footer>
-       </section>
-       
-       
-       
-       </body>
-       </html>
-       {% endblock %}
-       
-   
-              
-       
-   
-   
-     
-   
-              
-       
-   
-   
-     
-   
-  
+    {% endblock %}
+</body>
+
+</html>

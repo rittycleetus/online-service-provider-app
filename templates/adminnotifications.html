@@ -1,0 +1,211 @@
+{% extends 'navbaradmin1.html' %}
+{% block content %}
+{% load static %}
+<style>
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+
+button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+form {
+            margin-right: 10px;
+        }
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+.category-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+}
+
+
+            .flex-container {
+        display: flex;
+        gap: 1px;
+        margin-left: 180px;
+       
+    }
+
+    .form-container {
+        margin-bottom: 10px; 
+    }
+
+    button, a.btn-danger {
+        width: 35%; 
+        box-sizing: border-box; 
+        border-radius: 10px;
+        padding: 10px;
+        text-align: center;
+        display: block;
+        margin: 0 auto; 
+        max-width: 100px; }
+
+    @media screen and (min-width: 600px) {
+        
+        button, a.btn-danger {
+            max-width: none; }
+    }
+</style>
+<center>
+  <div class="category-box">
+  <h2>New Category Requests</h2>
+<br><br>
+  {% if new_category_requests %}
+  <ul>
+    {% for request in new_category_requests %}
+      <li>
+        <strong>NEW CATEGORY:</strong> <b style="color: blue;">{{ request.name }}</b><br>
+ <br>
+
+
+ <div class="form-container">
+  <form id="addCategoryForm" method="post" action="{% url 'save_new_category' %}">
+      {% csrf_token %}
+      <input type="hidden" id="newCategoryInput" name="request_id" value="{{ request.id }}">
+      <button type="submit" onclick="addCategory('{{ request.id }}')">ADD</button>
+  </form>
+</div>
+
+<div class="form-container">
+  <form id="deleteCategoryForm_{{ request.id }}" method="post" action="{% url 'delete_category_request' %}" style="display: flex;">
+      {% csrf_token %}
+      <input type="hidden" name="request_id" value="{{ request.id }}">
+      <a href="#" onclick="confirmAndDelete('{{ request.id }}', 'deleteCategoryForm_{{ request.id }}')" class="btn-danger" style="text-decoration: none;">DELETE</a>
+  </form>
+</div>
+
+
+
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p style="color: red;">"No New Category Requests!"</p>
+  </div>
+  <a href="{% url 'show_notification' %}"><button class="btn-primary1">Go to Registration Requests <span class='badge badge-danger'>{{ ab1 }}</span></button></a>
+  {% endif %}
+
+</center>
+  <script>
+    function addCategory(requestId) {
+      // Send an AJAX request to save the new category
+      $.ajax({
+        url: '{% url "save_new_category" %}',
+        type: 'POST',
+        data: {
+          'request_id': requestId,
+          'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+          if (response.success) {
+            alert('New category added successfully.');
+            // Redirect to show_notification
+            window.location.href = "{% url 'show_notification' %}";
+          } else {
+            alert('Failed to add new category.');
+          }
+        },
+        error: function(error) {
+          console.error('Error:', error);
+          alert('Failed to add new category.');
+        }
+      });
+    }
+
+    function confirmAndDelete(requestId, formId) {
+      // Show a confirmation prompt
+      var confirmation = confirm("Are you sure you want to delete this category request?");
+      
+      // If the user clicks OK, submit the corresponding form
+      if (confirmation) {
+        document.getElementById(formId).submit();
+      } else {
+        alert('Deletion canceled.');
+      }
+    }
+  
+
+//   function confirmAndDelete(requestId,csrf_token) {
+//     // Show a confirmation prompt
+//     var confirmation = confirm("Are you sure you want to delete this category request?");
+    
+//     // If the user clicks OK, call the deleteCategory function
+//     if (confirmation) {
+//         // Include the CSRF token in the headers
+//         var csrf_token = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+        
+//         deleteCategory(requestId, csrf_token);
+//     } else {
+//         alert('Deletion canceled.');
+//     }
+// }
+
+function deleteCategory(requestId, csrf_token) {
+    // Send an AJAX request to delete the category request
+    $.ajax({
+        url: '{% url "delete_category_request" %}',
+        type: 'POST',
+        headers: {
+            'X-CSRFToken': csrf_token
+        },
+        data: {
+            'request_id': requestId
+        },
+        success: function(response) {
+            if (response.success) {
+                // Alert message for successful deletion
+                alert('Both new category and registration requests have been rejected!');
+
+                // Redirect to show_notification
+                window.location.href = "{% url 'show_notification' %}";
+            } else {
+                alert('Failed to reject new category request.');
+            }
+        },
+        error: function(error) {
+            console.error('Error:', error);
+            alert('Failed to reject new category request.');
+        }
+    });
+}
+</script>
+
+{% endblock %}

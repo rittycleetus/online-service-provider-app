@@ -1,17 +1,7 @@
-{% extends 'navbar2.html' %}
+{% extends 'navbar4.html' %}
 {% block content %}
 {% load static %}
 
-
-  
-<style>
-    body{
-      background-image: url('{% static "images/edit.jpg" %}'); 
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
- 
-</style>
 <br>
 <br>
 <br>
@@ -25,13 +15,13 @@
       </h5>
           {% endfor %} 
   </div>
+  <div class="container col-8">
+<h1 style="color: black;text-align: center;"><u>EDIT HERE!</u></h1>
+<center><img src="{{u.profile_picture.url}}" style="width:90px;height:90px;"></center>
 
-<h1 style="color: black;text-align: center;"
-><u>EDIT HERE!</u></h1>
-<img src="{{u.profile_picture.url}}" style="width:90px;height:90px;">
-    <center>
-      <div>
-        <table border="2px" style="margin-top: 45px;margin-left:90px;background-color: antiquewhite;">
+
+    
+      
      <form action="{% url 'useredit1' u.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %} 
     
@@ -46,10 +36,20 @@
               <input type="text" name="lname" class="form-control" value="{{u.user.last_name}}" style="background-color:peachpuff;">
             </div>
           </div>
-    
-            <div class="form-group">
+
+          <div class="form-row">
+
+            <div class="form-group col-md-6">
+              <label>Username</label>
+              <input type="text" name="uname" class="form-control" value="{{u.user.username}}"  style="background-color:peachpuff;">
+            </div>
+
+
+
+            <div class="form-group col-md-6">
               <label>Email</label>
               <input type="email" name="email" class="form-control" value="{{u.user.email}}"  style="background-color:peachpuff;">
+            </div>
             </div>
             <div class="form-group">
                 <label>Contact Number</label>
@@ -66,14 +66,15 @@
                 <label>Image</label>
                 <input type="file" name="image" class="form-control"  accept="image/*" value="{{u.profile_picture}}"  style="background-color:peachpuff;">
               </div>
-              
+      
               <center> <a href="{% url 'useraction1' %}" style="background-color: grey;margin: auto;" class="btn" >BACK</a>
             <button type="submit"  style="background-color:grey;" class="btn">UPDATE</button></center>
           </form>
+          </div>
           {% if error == "no" %}
           <script>
             alert('Successfully updated');
-            window.location=("{% url 'useraction1' %}");
+            window.location=("{% url 'usercardbyuser' u.id %}");
           </script>
           {% endif %}
           
@@ -83,11 +84,4 @@
           </script>
           {% endif %}
         </div>
-   
-      </div>
-</center>
-
-<br>
-<br>
-</div>
 {% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'navbar4.html' %}
+{% block content %}
+{% load static %}
+
+    <div class="container col-sm-8">
+        
+        <br><br>
+  <h3 style="color: gray;">SERVICE CARD</h3>
+        <h1><center>{{profile.user.first_name}}</center></h1>
+        <div style="overflow-x: auto;">
+        <table class="table" border="3px black solid">
+          
+         
+            <tr>
+                <th >Name</th><td >{{profile.user.first_name}}  {{profile.user.last_name}}</td>
+            </tr>
+         
+            <tr>
+                <th >Username</th><td >{{profile.user.username}}</td>
+            </tr>
+            <tr>
+                <th>Email</th><td>{{profile.user.email}}</td>
+                
+            </tr>
+          
+            <tr>
+                <th>Phone</th><td>{{profile.phone}}</td>
+                
+            </tr>
+          
+        
+            <tr>
+                <th>Address</th><td>{{profile.address}}</td>
+            </tr>
+
+          
+            <tr>
+                <th>Category</th><td>{{profile.category.name}}</td>
+            </tr>
+            <tr>
+                <th>Years of Experience</th><td>{{profile.workexp}}</td>
+            </tr>
+           <tr>
+            <th>Certificate</th><td><a href="{{profile.documents.url}}">View</a></td>
+           </tr>
+
+        </table>
+        <center> <a href="{% url 'showworkersforuser' %}" style="background-color: grey;margin: auto;" class="btn" >BACK</a></center>
+        <br>
+        <br>
+       
+</div>
+</div>
+<br><br>
+<br>
+<br>
+<div>
+
+
+
+ 
+{% endblock %}
+
+
+</div>

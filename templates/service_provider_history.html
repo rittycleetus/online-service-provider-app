@@ -1,0 +1,101 @@
+{% extends 'navbaradmin1.html' %}
+{% block content %}
+{% load static %}
+<style>
+                h1{
+        color: black;
+        
+     
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size:50px;
+        text-align: center;
+        margin-top: 60px;
+        margin-left: 100px;
+    }
+    
+    
+
+th{
+color: aliceblue;
+}
+td{
+    color: aqua;
+}
+th,td{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+h2 {
+            color: grey;
+            margin-right: 10px; 
+            text-align: center; 
+
+        }
+h1{
+    text-align: center;
+    margin-left: 1px;
+}
+        button {
+            background-color: peachpuff;
+            margin-right: 20%; 
+            font-size: 1.2em; 
+            display: block; 
+            margin: 20px auto; 
+         
+        }
+</style>
+<body>
+    <center>
+    <h1>Completed Tasks</h1>
+    <h2>Service Provider: {{ worker.user.username }}</h2>
+    <a href="{% url 'view_posted_services' worker_id=worker.id %}"style="text-decoration: none;">
+        <button>View His Services</button>
+    </a>
+    <div style="overflow-x: auto;">
+        <table border="4px" style="margin-top: 40px;background-color: black;padding: 5px;">
+    
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Date Booked</th>
+                <th>Address</th>
+                <th>Service Name</th>
+                <th>Category</th>
+                <th>Approval Status</th>
+                <th>Working Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if bookings %}
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.customer.first_name }}</td>
+                    <td>{{ booking.date_booked|date }}</td>
+                    <td>{{ booking.address }}</td>
+                    <td>{{ booking.service.title }}</td>
+                    <td>{{ booking.category.name }}</td>
+                    <td>{{ booking.get_approval_status_display }}</td>
+               
+                    <td>
+                        {% if  booking.is_completed %}
+                         
+                            Completed
+                        {% endif %}
+                    </td>
+    
+                </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="10">No completed tasks available.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </div>
+    </table>
+</center>
+</body>
+{% endblock %}

@@ -11,40 +11,157 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
    {% load static %}
    <style>
-    nav{
-      background-image: url('{% static "images/grey.jpg" %}');
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-    .dropdown{
-        float: left;
-        overflow: hidden;
-    }
+    
+   
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:'Times New Roman', Times, serif;
+}
+
+.footer {
+
+  max-width: 100%;
+  width: 2500px;
+  background: gainsboro;
+  border-radius: 6px;
+}
+.footer .footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 20px;
+}
+.footer-row .footer-col h4 {
+  color:black;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.footer-col .links {
+  margin-top: 20px;
+}
+.footer-col .links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+.footer-col .links li a {
+  text-decoration: none;
+  color: darkslategrey
+}
+.footer-col .links li a:hover {
+  color: darkslategray;
+}
+.footer-col p {
+  margin: 20px 0;
+  color: darkslategray;
+  max-width: 300px;
+}
+.footer-col form {
+  display: flex;
+  gap: 5px;
+}
+.footer-col input {
+  height: 40px;
+  border-radius: 6px;
+  background: none;
+  width: 100%;
+  outline: none;
+  border: 1px solid #7489C6 ;
+  caret-color: #fff;
+  color:darkslategrey;
+  padding-left: 10px;
+}
+.footer-col input::placeholder {
+  color: blue;
+}
+ .footer-col form button {
+  background: #fff;
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+.footer-col form button:hover {
+  background: #cecccc;
+}
+.footer-col .icons {
+  display: flex;
+  margin-top: 30px;
+  gap: 30px;
+  cursor: pointer;
+}
+.footer-col .icons i {
+  color: darkblue
+}
+.footer-col .icons i:hover  {
+  color: skyblue
+}
+
+  .footer {
+    position: relative;
+ 
+    transform: none;
+    width: 100%;
+    border-radius: 0;
+  }
+  .footer .footer-row {
+    padding: 20px;
+    gap: 1rem;
+  }
+  .footer-col form {
+    display: block;
+  }
+  .footer-col form :where(input, button) {
+    width: 100%;
+  }
+  .footer-col form button {
+    margin: 10px 0 0 0;
+  }
+
+  @media (min-width: 768px) {
+  .footer {
+    width: 80%;
   
+  }
+}
+  @media (min-width: 1200px) {
+  .footer {
+    width: 100%;
+  }
+  }
    </style>
 </head>
 <body>
-    <section id="main-nav">
-    <nav id="main-nav" class="navbar navbar-expand-md bg-dark text-dark fixed-top">
+    <section id="main-nav" style="position: fixed;
+    top: 0;
+    z-index: 0;
+    padding: 0 10px;
+    ">
+    <nav id="main-nav" class="navbar navbar-expand-md bg-light text-dark fixed-top">
      
-    <div class="container">
+    <div class="container" style="border: none;">
            <!-- Brand -->
            <div>
-           <a class="navbar-brand bg-dark" href="#home">
-             <div class="navbar-header">
-                <a class="navbar-brand" href="#" style="font-size: large;color: white;">HELP IN LOVE</a>
+         
+             
+                <a class="navbar-brand" href="{% url 'home' %}" style="font-size: large;color:black;padding-right: 130px;"><b>HELP IN LOVE</b></a>
                 <br>
-            <img src="{% static 'images/logo.jpg' %}" style="width: 100px;height: 40px; justify-content: left;">
+            <img src="{% static 'images/logo.jpg' %}" class="img-fluid" style="width: 100px;height: 60px; justify-content: left;">
             <br>
           
-            <a class="navbar-brand" href="#" style="font-size: small;">Services @ ur home</a>
+            <a class="navbar-brand" href="{% url 'home' %}" style="font-size: small;">Services @ ur home</a>
 
-          </div>
+       
          
            <!-- Toggler/collapsibe Button -->
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
              <span class="navbar-toggler-icon"></span>
-             <i class="fa fa-bars" aria-hidden="true" ></i>
+             <i class="fa fa-bars" aria-hidden="true"  style="color: black;"></i>
            </button>
                    <!-- Toggler/collapsibe Button -->
 
@@ -56,21 +173,26 @@
              
              <ul class="navbar-nav ms-auto mb-lg-0 mb-2">
                <li class="nav-btn">
-                 <a class="btn btn-outline-light" href="{% url 'login1' %}">LOG IN</a>
+                 <a class="btn btn-outline-dark" href="{% url 'login1' %}">LOG IN</a>
                </li>
+           &nbsp; &nbsp; 
                <div>
-               
+              
            
             
-              <div class="btn-dropdown">
-                <button class="btn btn-outline-light">SIGN UP
-               <i class="fa fa-caret down"></i>
-               </button>
-                 <div class="dropdown-content">
-                 <a class="dropdown-item" href="{% url 'usersignup' %}">User</a>
-               <a class="dropdown-item" href="{% url 'workersignup' %}">Service man/Worker</a>
-</div>
-              
+              <li class="nav-item dropdown">
+                <button class="btn btn-outline-dark dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> SIGN UP
+               
+              </button>
+                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  
+                 <a class="dropdown-item"  href="{% url 'usersignup' %}">User</a>
+               <a class="dropdown-item"   href="{% url 'workersignup' %}">Worker</a>
+                
+               
+                </div>
+</li>
+              </div>
               
              </ul>
 </div>
@@ -86,41 +208,64 @@
 <br>
 <br>
 <br>
-<section class="footer" style="background-color: gray">
-    <footer>
-      <div class="footerContainer">
-        <img src="{% static 'images/logo.jpg' %}" style="width: 100px;height: 100px; justify-content: left;">
-          <p>HELP IN LOVE is an online Home Improvement aggregator, 
-            connecting homeowners <br>with the best home repair professionals in their neighbourhood.</p> 
-            </div>
-            <div class="footerContainer" style="float:right;" >SOCIAL LINKS<br>
-              <br><br>
-                <a href=""><i style="font-size: 40px;color: black;" class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href=""><i style="font-size: 40px;color: black;"class="fa fa-twitter" aria-hidden="true"></i></a>
-                <a href=""><i style="font-size: 40px;color: black;"class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href=""><i style="font-size: 40px;color: black;"class="fa fa-pinterest" aria-hidden="true"></i></a>
-            </div>
+<footer>
+
+
+<section class="footer">
+  <div class="footer-row">
+    <div class="footer-col">
+      <img src="{% static 'images/logo.jpg' %}" style="width: 100px;height: 100px; justify-content: left;">
+      <h4>HELP IN LOVE</h4>
+      <!-- <ul class="links">
         
-            <div class="footernav" style="margin: auto;text-align: center;"> 
-              <ul style="list-style-type: none;">
-                  <li><a href="" style="color: black;">Home</a></li>
-                  <li><a href="" style="color: black;">News</a></li>
-                  <li><a href="" style="color: black;">About</a></li>
-                  <li><a href="" style="color: black;">Contact Us</a></li>
-                  <li><a href="" style="color: black;">Our Team</a></li>
-              </ul>
-          </div>
-  
-          
-  
+        <li><a href="#">About Us</a></li>
+        
+        <li><a href="#">Customers</a></li>
+        <li><a href="#">Services</a></li>
+       
+      </ul> -->
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul class="links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>About Us</h4>
+      <ul class="links">
+        
+        <li style="   text-align: justify;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      "><p>Help in Love connects you to experts around you for Home Maintenance and Repairs, Utility, Lifestyle, Health, Beauty, Travel, and other local services, and also brings Local Shopping, Deals, and Events to you, right where you are, through an easy to use platform.Uncomplicate Life!</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p>
+        Subscribe to our newsletter for a weekly dose
+        of news, updates, helpful tips, and
+        exclusive offers.
+      </p>
+      <form action="#">
+        <input type="text" placeholder="Your email" style="color: black;"required>
+        <button type="submit">SUBSCRIBE</button>
+      </form>
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-pinterest"></i>
       </div>
-  
-      <div class="footerbottom">
-          <p style="color: black; text-align: center;border: 3px solid black;">Copyright &copy;2023;Designed by<span class="designer"> Ritty</span>
-  
-          </p>
-      </div>
-  </footer>
-  </section>
-  
-</body></html>
+    </div>
+  </div>
+</section>
+</footer>
+</body>
+</html>

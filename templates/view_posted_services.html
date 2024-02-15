@@ -1,0 +1,28 @@
+{% extends 'navbaradmin1.html' %}
+{% block content %}
+
+<div class="container mt-6">
+  <h1>Services by {{ worker.user.username }}</h1>
+  <div class="row">
+    {% if posted_services %}
+      {% for service in posted_services %}
+        <div class="col-md-4 mb-4">
+          <div class="card-deck">
+            <div class="card">
+              <img src="{{ service.image.url }}" class="card-img-top" width="100" style="height: 180px;" alt="Image Alt Text">
+              <div class="card-body">
+                <h5 class="card-title" style="color: red">{{ service.title }}</h5>
+                <p class="card-text">{{ service.description }}</p>
+                <p class="card-text">for {{ service.duration }} price starts from <b>{{ service.price }}</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No services found for {{ worker.user.username }}.</p>
+    {% endif %}
+  </div>
+</div>
+</body>
+{% endblock %}

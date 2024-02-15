@@ -1,0 +1,66 @@
+{% extends 'navbaradmin1.html' %}
+{% block content %}
+{% load static %}
+
+    <style>
+      /* Optional: Add custom styles for your navbar */
+   
+  
+          
+    </style>
+  </head>
+  <body>
+  
+
+<body>
+
+
+      <h1 class="display-10">All REVIEWS</h1>
+      <!-- <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> -->
+
+  
+
+  <!------------------------- cards------------------ -->
+  <form action="" method="post">
+    {% csrf_token %}
+  
+  <div class="container mt-5">
+    <div class="row">
+        
+
+        {% for i in a %}
+        
+      <div class="col-md-4 mb-4">
+        <div class="card" >
+          <h1 class="card-img-top" >{{i.user.username}}</h1>
+          <div class="card-body">
+            <h2 class="card-title" style="color: blue;">{{i.service.title}}</h5>
+            <p class="card-text" style="color: orangered;">Rating-<b>{{i.rating}}</b> (out of 5)</p>
+            <p class="card-text"  style="color: orangered;"></p>{{i.comment}}</p>
+            <br>
+           
+         
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </form>
+   
+      <!-- Add more cards as needed -->
+  
+
+      <!-- <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="https://placekitten.com/300/200" class="card-img-top" alt="Image Alt Text">
+          <div class="card-body">
+            <h5 class="card-title">Card Title 2</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Learn More</a>
+          </div>
+        </div>
+      </div> -->
+
+    </div>
+  </div>
+      
+{% endblock %}

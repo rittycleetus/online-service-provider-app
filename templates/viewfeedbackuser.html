@@ -1,0 +1,30 @@
+
+{% extends 'navbar4.html' %}
+{% block content %}
+{% load static %}
+
+<!------------------------- cards------------------ -->
+<div class="container mt-5">
+    <div class="row">
+        {% if reviews %}
+            {% for review in reviews %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <h1 class="card-img-top">{{ review.user.username }}</h1>
+                        <div class="card-body">
+                            <h2 class="card-title" style="color: blue;">{{ review.service.title }}</h5>
+                            <p class="card-text" style="color: orangered;">Rating-<b>{{ review.rating }}</b> (out of 5)</p>
+                            <p class="card-text" style="color: orangered;">{{ review.comment }}</p>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-md-12">
+                <p style="color: red;font-size: large;">No reviews available.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

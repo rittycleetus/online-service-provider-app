@@ -1,119 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {% load static %}
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>HELP IN LOVE</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <style>
-    /* Optional: Add custom styles for your navbar */
-    body {
-      padding-top: 56px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELP IN LOVE</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+   {% load static %}
+   <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:'Times New Roman', Times, serif;
+}
+
+.footer {
+
+  max-width: 1380px;
+  width: 2500px;
+  background: gainsboro;
+  border-radius: 6px;
+}
+.footer .footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3.5rem;
+  padding: 60px;
+}
+.footer-row .footer-col h4 {
+  color:black;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.footer-col .links {
+  margin-top: 20px;
+}
+.footer-col .links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+.footer-col .links li a {
+  text-decoration: none;
+  color: darkslategrey
+}
+.footer-col .links li a:hover {
+  color: darkslategray;
+}
+.footer-col p {
+  margin: 20px 0;
+  color: darkslategray;
+  max-width: 300px;
+}
+.footer-col form {
+  display: flex;
+  gap: 5px;
+}
+.footer-col input {
+  height: 40px;
+  border-radius: 6px;
+  background: none;
+  width: 100%;
+  outline: none;
+  border: 1px solid #7489C6 ;
+  caret-color: #fff;
+  color:darkslategrey;
+  padding-left: 10px;
+}
+.footer-col input::placeholder {
+  color: blue;
+}
+ .footer-col form button {
+  background: #fff;
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+.footer-col form button:hover {
+  background: #cecccc;
+}
+.footer-col .icons {
+  display: flex;
+  margin-top: 30px;
+  gap: 30px;
+  cursor: pointer;
+}
+.footer-col .icons i {
+  color: darkblue
+}
+.footer-col .icons i:hover  {
+  color: skyblue
+}
+  .footer {
+    position: relative;
+ 
+    transform: none;
+    width: 100%;
+    border-radius: 0;
+  }
+  .footer .footer-row {
+    padding: 20px;
+    gap: 1rem;
+  }
+  .footer-col form {
+    display: block;
+  }
+  .footer-col form :where(input, button) {
+    width: 100%;
+  }
+  .footer-col form button {
+    margin: 10px 0 0 0;
+  }
+
+
+  
+
+    .topnav {
+      background: #cecccc;
+      overflow: hidden;
+
     }
 
-.nav-link[data-toggle].collapsed:after {
-  content: "▾";
-}
-.nav-link[data-toggle]:not(.collapsed):after {
-  content: "▴";
-}
+    .topnav a {
+      float: left;
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .topnav a:hover {
+     
+      color: black;
+    }
+    .topnav img {
+
+        margin-left: 5px;
+
+    }
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background: #cecccc;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 18px;
+      color: black;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 16px;
+    }
+    .nav-item a:hover{
+        color: grey;
+    }
+    
+    
   </style>
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" >
-  <a class="navbar-brand" href="#"><img src="{% static 'images/logo.jpg' %}" alt="Your Logo"  width="70px" style="margin-left: 30px;" ></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse " id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <a class="dropdown-item" href="#" style="color: bisque;">Welcome {{user.username}}  </a>
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="nav-link btn btn-danger" style="color: white; width: 70%;margin-left: 25px;" href="{% url 'update_password' %}" id="link1" >Change Password <i class="fa fa-key"></i></a>
-          <a class="nav-link btn btn-danger" style="color: white; width: 70%;margin-left: 25px;" href="{% url 'logoutt' %}" id="link2" >Logout <i class="fa fa-power-off"></i></a>
-          <!-- <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href=""></a>
-        </div> -->
-      </li>
-    </ul>
+<body style="background-color: #ccbbbb;">
+
+  <div class="topnav">
+    
+   
+    <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.jpg' %}" alt="Your Logo"  width="70px"  ></a>
+    <a class="navbar-brand" href="#" style="font-size: large;"><b>HELP IN LOVE</b>
+  <br>
+ Services @ ur home</a>
+    <a href="#" onclick="openNav()" style="float: right;"> <i class="fa fa-bars" aria-hidden="true"  style="color: black;"></i></a>
+  
+          <a href="#" style="color: black;float: right;font-weight: bolder;font-size:20px;"class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Welcome {{user.username}}  
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+           
+
+            <a class="nav-link btn-danger" style="color: white; height: 30%;margin-left: 25px;" href="{% url 'logoutt' %}" id="link2" >Logout <i class="fa fa-power-off"></i></a>
+            <!-- <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href=""></a>
+          </div> -->
+        </li>
+      </ul>
+    </div>
   </div>
-</nav>
-<!-- ------verticle bar-------- -->
-<div class="container-fluid" >
-  <div class="row ">
-      <!-- Vertical Navbar -->
-      <nav class="col-md-2 d-none d-md-block bg-light sidebar " id="vbar" style="height: 105vh;">
-          <div class="sidebar-sticky" style="background-color: grey;height: 670px;">
-            <br><br><br>
-              <ul class="nav flex-column" >
-                  <li class="nav-item">
-                      <a class="nav-link" href="{% url 'nofitr' %}"  style="color: aliceblue;">
-                          All Services
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'showworkersforuser' %}"  style="color: aliceblue;">
-                        View all Workers
-                    </a>
-                  
-                </li>
+
+
+   
+
+  <div id="mySidenav" class="sidenav">
+    <a href="#" class="closebtn" onclick="closeNav()"><i class="fa fa-close" aria-hidden="true"></i></a>
+    <a href="{% url 'useraction1' %}" style="color: red;">User Dashboard</a>
+         
+
+
+    <a class="nav-link dropdown-toggle"  href="#submenu1" data-toggle="collapse" data-target="#submenu1" style="color: black;">My Profile</a>
+    <div class="collapse" id="submenu1" aria-expanded="false">
+        <ul class="flex-column pl-2 nav">
+            <li class="nav-item">
+                <a class="nav-link py-0" href="{% url 'usercardbyuser' u.id %}" style="color: darkslategray;" >View Profile</a></li>
+            <li class="nav-item">
+              <li class="nav-item">
+                <a class="nav-link py-0" href="{% url 'useredit' u.id %}"   style="color: darkslategray;">Edit Profile</a></li>
+            <li class="nav-item">
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'rating' %}"  style="color: aliceblue;">
-                      Submit Feedback
-                  </a>
-                
+                    <a class="nav-link py-0" href="{% url 'update_passworduser' %}"  style="color: darkslategray;">Change Password</a></li>
+                <li class="nav-item">
               </li>
-    </ul>
-              </div>
-              </nav>
+              </li>
+           
+          </div>
+        </li>
+
+        <a href="{% url 'myorderview'  %}" >
+          My Orders   
+       </a>
+       
+            <a href="{% url 'showworkersforuser' %}" >
+               View All Workers   
+            </a>
+     
+
+
+    
+    
+            
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="{% url 'viewfeedbackworker' %}" id='ah' style='text-decoration:none;display: block;color: black'>
+                  View Reviews
+              </a>
+          </li> -->
+           
+        </ul>
+
+    
+  </div>
+
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
+
       <!-- Main Content -->
-      <main role="main" class="col-md-2 ml-sm-auto col-lg-10 px-2">
+      <main role="main" class="col-md-2 ml-sm-auto col-lg-10 px-4" style="margin-top: 20px;">
+          
         {% block content %}
         {% endblock %}
-      </main>  
+    </main>
 </div>
 </div>
-<!-- Your page content goes here -->
-<br><br><br>
-<section class="footer" style="background-color: gray">
-  <footer>
-    <div class="footerContainer">
-      <img src="{% static 'images/logo.jpg' %}" style="width: 100px;height: 100px; justify-content: left;">
-        <p>HELP IN LOVE is an online Home Improvement aggregator, 
-          connecting homeowners <br>with the best home repair professionals in their neighbourhood.</p> 
-          </div>
-          <div class="footerContainer" style="float:right;" >SOCIAL LINKS<br>
-            <br><br>
-              <a href=""><i style="font-size: 40px;color: black;" class="fa fa-facebook" aria-hidden="true"></i></a>
-              <a href=""><i style="font-size: 40px;color: black;"class="fa fa-twitter" aria-hidden="true"></i></a>
-              <a href=""><i style="font-size: 40px;color: black;"class="fa fa-instagram" aria-hidden="true"></i></a>
-              <a href=""><i style="font-size: 40px;color: black;"class="fa fa-pinterest" aria-hidden="true"></i></a>
-          </div>
-      
-          <div class="footernav" style="margin: auto;text-align: center;"> 
-            <ul style="list-style-type: none;">
-                <li><a href="" style="color: black;">Home</a></li>
-                <li><a href="" style="color: black;">News</a></li>
-                <li><a href="" style="color: black;">About</a></li>
-                <li><a href="" style="color: black;">Contact Us</a></li>
-                <li><a href="" style="color: black;">Our Team</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="footerbottom">
-        <p style="color: black; text-align: center;border: 3px solid black;">Copyright &copy;2023;Designed by<span class="designer"> Ritty</span>
-        </p>
-    </div>
-</footer>
-</section>
-</body>
-</html>
+</div>
+</div>
 
+<!-- Your page content goes here -->
+
+
+<br>
+<br>
+<br>
+<footer>
+
+
+  <section class="footer">
+    <div class="footer-row">
+      <div class="footer-col">
+        <img src="{% static 'images/logo.jpg' %}" style="width: 100px;height: 100px; justify-content: left;">
+        <h4>HELP IN LOVE</h4>
+        <!-- <ul class="links">
+          
+          <li><a href="#">About Us</a></li>
+          
+          <li><a href="#">Customers</a></li>
+          <li><a href="#">Services</a></li>
+         
+        </ul> -->
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul class="links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Reviews</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>About Us</h4>
+        <ul class="links">
+          
+          <li><p>Help in Love connects you to experts around you for Home Maintenance and Repairs, Utility, Lifestyle, Health, Beauty, Travel, and other local services, and also brings Local Shopping, Deals, and Events to you, right where you are, through an easy to use platform.Uncomplicate Life!</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p>
+          Subscribe to our newsletter for a weekly dose
+          of news, updates, helpful tips, and
+          exclusive offers.
+        </p>
+        <form action="#">
+          <input type="text" placeholder="Your email" style="color: black;"required>
+          <button type="submit">SUBSCRIBE</button>
+        </form>
+        <div class="icons">
+          <i class="fa fa-facebook"></i>
+          <i class="fa fa-twitter"></i>
+          <i class="fa fa-instagram"></i>
+          <i class="fa fa-pinterest"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+  </footer>
+  </body>
+  </html>

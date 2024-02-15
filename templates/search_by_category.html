@@ -1,0 +1,43 @@
+
+{% extends 'navbaradmin1.html' %}
+
+{% block content %}
+<div class="container mt-6">
+  <h1>Search Results</h1>
+
+  <form method="get" action="{% url 'search_by_category' %}">
+    <label for="category">Search by Service Category:</label>
+    <select name="category" id="category" style="width: 250px;height: 40px;background-color: peachpuff;">
+      <option value="" selected>All Categories</option>
+      {% for category in categories %}
+        <option value="{{ category.name }}" {% if query_category == category.name %}selected{% endif %}>{{ category.name }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="btn" style="margin-right:30px;background-color:grey;">SEARCH</button>
+  </form>
+<br>
+<br>
+  <div class="row">
+    {% if services %}
+      {% for service in services %}
+        <div class="col-md-4 mb-4">
+          <div class="card-deck">
+            <div class="card">
+              <img src="{{ service.image.url }}" class="card-img-top" width="100" style="height: 180px;" alt="Image Alt Text">
+              <div class="card-body">
+                <h5 class="card-title" style="color: red">{{ service.title }}</h5>
+                <p class="card-text">{{ service.description }}</p>
+                <p class="card-text">for {{ service.duration }} price starts from <b>{{ service.price }}</b></p>
+                <a href="{% url 'viewcategoryfeedbackadmin' service.id %}" style="font-size: small;font-weight: 500;float: right;color: blue;"><b>REVIEWS</b></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p style="color: red;">No services found for the selected category.</p>
+    {% endif %}
+  </div>
+</div>
+</body>
+{% endblock %}

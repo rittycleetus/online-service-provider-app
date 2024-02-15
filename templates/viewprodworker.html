@@ -1,0 +1,54 @@
+
+{% extends 'navbar3.html' %}
+{% block content %}
+{% load static %}
+  <style>
+    
+</style>
+<body>
+
+    <!-- Main Content -->
+    <main role="main">
+      <h1>ALL SERVICES</h1>
+    
+      <!------------------------- cards------------------ -->
+      <form action="" method="post">
+        {% csrf_token %}
+      
+      <div class="container mt-5">
+        <div class="row">
+            
+    
+            {% for i in a %}
+            
+          <div class="col-md-4 mb-3">
+            <div class="card" >
+              <img src="{{i.image.url}}" class="card-img-top" width="50px" height="150px" alt="Image Alt Text">
+              <div class="card-body">
+                <h3 class="card-title" style="color: blue;">{{i.title}}</h3>
+                <h5 class="card-title"><b>{{i.category.name}}</b></h5>
+                <p class="card-text">{{i.description}}</p>
+                <p class="card-text"> for{{i.duration}} price starts from {{i.price}}</p>
+                
+                <br>
+                
+             
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </form>
+
+        </div>
+      </div>
+    
+
+  </main>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Your page content goes here -->
+
+{% endblock %}

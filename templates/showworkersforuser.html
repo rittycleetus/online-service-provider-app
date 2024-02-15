@@ -1,4 +1,4 @@
-{% extends 'navbar2.html' %}
+{% extends 'navbar4.html' %}
 {% block content %}
 {% load static %}
 
@@ -15,11 +15,7 @@
     }
     
     
-body{
-    background-image: url('{% static "images/show1.jpg" %}');  
-    background-size: cover;
-    background-repeat: no-repeat;
-}
+
 th{
 color: aliceblue;
 }
@@ -40,7 +36,7 @@ th,td{
             
             
                          <h1>WORKER DETAILS</h1>
-
+                         <div style="overflow-x: auto;">
         <table border="4px" style="margin-top: 40px;margin-left:2px;background-color: black;padding: 5px;">
     
             <tr>
@@ -52,7 +48,7 @@ th,td{
                 <th>ADDRESS</th>
                 <th>CATEGORY</th>
                 <th>EXPERIENCE(IN YEARS)</th>
-                <th>ID PROOF</th>
+                
               
                 
             
@@ -67,13 +63,13 @@ th,td{
             
             <tr>
                 
-                <td><a href="{% url 'workercard' e.id %}">{{e.user.first_name}} {{e.user.last_name}}</a></td>
+                <td><a href="{% url 'workercardbyuser' e.id %}">{{e.user.first_name}} {{e.user.last_name}}</a></td>
                 <td>{{e.user.email}}</td>
                 <td>{{e.phone}}</td>
                 <td>{{e.address}}</td>
                 <td>{{e.category.name}}</td>
                 <td>{{e.workexp}}</td>
-                <td><a href="{{e.idproof.url}}">{{e.idproof}}</td>
+               
                 
                 
                 
@@ -92,7 +88,7 @@ th,td{
         
     </center>
     </table>
- 
+ </div>
     
     {% endblock %}
            

@@ -1,19 +1,47 @@
-{% extends 'navbar2.html' %}
+{% extends 'navbar4.html' %}
 {% block content %}
 {% load static %}
 <body>
-    <h1>FEEDBACK SUBMIT FORM</h1>
-    <form action="#" method="POST">
-        <div>
-          
-            
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <br>
+                <br>
+                <br>
+                <h1>FEEDBACK SUBMIT FORM</h1>
+                <br>
+                
+                <input type="text" value="SERVICE:{{a.service.title}}" class="form-control" readonly>
+                <br>
+                <form method="post" action="{% url 'rating' a.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="rating">Rating:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="number" name="rating" min="1" max="5" required class="form-control" >
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea name="comment" required class="form-control" ></textarea>
+                    </div>
+                    <br>
+                    <input type="submit" value="Submit Review" class="btn btn-primary">
+                </form>
+
+                {% if error == "no" %}
+                <script>
+                    alert('Thanks for the Feedback');
+                    window.location=("{% url 'useraction1' %}");
+                </script>
+                {% endif %}
+
+                {% if error == "yes" %}
+                <script>
+                    alert('Something went wrong, Try Again');
+                </script>
+                {% endif %}
+            </div>
         </div>
-        <div> <label>Rating(Out of 5)</label>
-            <input type="number" name="rating"></div>
-   <div>
-    <label>Feedback</label>
-    <input type="text" name="feedback">
-</div>
-    <button type="submit" >SUBMIT</button>
-</form>
+    </div>
+</body>
 {% endblock %}

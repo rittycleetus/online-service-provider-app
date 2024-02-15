@@ -1,0 +1,32 @@
+{% extends 'navbar3.html' %}
+{% block content %}
+    <h1>Feedbacks for Your Posted Services</h1>
+
+    {% if reviews %}
+        <form action="" method="post">
+            {% csrf_token %}
+  
+            <div class="container mt-5">
+                <div class="row">
+                    {% for review in reviews %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <h3 class="card-img-top">Customer-{{ review.booking.customer.first_name }}</h3>
+                                <div class="card-body">
+                                    <h2 class="card-title" style="color: blue;">{{ review.service.title }}</h5>
+                                    <p class="card-text" style="color: orangered;">Rating - <b>{{ review.rating }}</b> (out of 5)</p>
+                                    <p class="card-text" style="color: orangered;">{{ review.comment }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </form>
+    {% else %}
+        <p style="color: red;">No feedbacks available for your posted services.</p>
+    {% endif %}
+    <br>
+    <br>
+    <br>
+{% endblock %}

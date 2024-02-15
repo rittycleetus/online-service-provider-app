@@ -1,0 +1,56 @@
+{% extends 'navbaruser.html' %}
+{% block content %}
+{% load static %}
+<style>
+       .card {
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+    }
+
+    .card-body {
+        flex-grow: 1;
+    }
+</style>
+<body>
+    <div class="container">
+        <!-- Content above the services if needed -->
+    </div>
+
+    <!------------------------- services for selected category ------------------ -->
+
+    {% csrf_token %}
+    <div class="container mt-6">
+        <h2>Services for {{ category.name }}</h2>
+        <div class="row">
+            {% for service in services %}
+            <div class="col-md-4 mb-4">
+                <div class="card-deck">
+                    <div class="card">
+                        <!-- Your service card content here -->
+                        <img src="{{service.image.url}}" class="card-img-top" width="100" style="height: 180px;" alt="Image Alt Text">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: red">{{ service.title }}</h5>
+                            
+
+                            <p class="card-text">{{ service.description }}</p>
+                            <p class="card-text"> for{{service.duration}} price starts from <b>{{service.price}}</b></p>
+                            <br>
+                            <a href="{% url 'bookit' service.id %}" class="btn-primary" style="background-color: white; font-size: large;background-color: aquamarine;border: 1px solid darkblue; color: darkblue;text-decoration: none;padding: 5px;">BOOK NOW</a>
+                            <a href="{% url 'viewfeedbackuser' service.id %}" style="font-size: small;font-weight: 500;float: right;color: blue;"><b>REVIEWS</b></a>
+                   
+
+                                                              
+                            <!-- Add more details as needed -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+
+

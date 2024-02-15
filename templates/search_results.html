@@ -1,0 +1,48 @@
+{% extends 'navbaradmin1.html' %}
+{% block content %}
+{% load static %}
+<style>
+    .no-bullets {
+    list-style-type: none;
+}
+</style>
+<body>
+    <center>
+    <h1>Search Results</h1>
+
+    <form method="get" action="{% url 'search_service_provider' %}">
+        <br>
+        
+        <input type="text" name="q" placeholder="Search by Worker Username"  style="width:200px;background-color: peachpuff;">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if query %}
+    {% if workers %}
+    <br>
+        <h2>Results for "{{ query }}"</h2>
+        <ul>
+            {% for worker in workers %}
+            <ul class="no-bullets">
+                <li>
+                    <a href="{% url 'service_provider_history' worker_id=worker.id %}">
+                        {{ worker.user.username }} - Service Provider
+                    </a>
+                </li>
+            </ul>
+                
+            {% endfor %}
+        </ul>
+    {% else %}
+    <br><br>
+        <p style="color: red;">No results found for "{{ query }}".</p>
+    {% endif %}
+{% endif %}
+</center>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

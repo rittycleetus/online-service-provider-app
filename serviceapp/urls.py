@@ -23,7 +23,7 @@ urlpatterns = [
       path('showusers',views.showusers,name='showusers'),
       path('addservice',views.addservice,name='addservice'),
       path('addservice1',views.addservice1,name='addservice1'),
-      path('nofitr',views.nofitr,name='nofitr'),
+
       path('fitr/<int:pk>',views.fitr,name='fitr'),
       path('bookit/<int:pk>',views.bookit,name='bookit'),
       path('bookit1/<int:pk>',views.bookit1,name='bookit1'),
@@ -50,18 +50,44 @@ urlpatterns = [
       path('update_password',views.update_password,name='update_password'),
       path('usercard/<int:pk>',views.usercard,name='usercard'),
       path('viewallbookings',views.viewallbookings,name='viewallbookings'),
-     
-     
-      path('viewprodadminandworker',views.viewprodadminandworker,name='viewprodadminandworker'),
+    
       path('showworkersforuser',views.showworkersforuser,name='showworkersforuser'),
-     
-      path('rating',views.rating,name='rating'),
-
-       path('addcategoryworker',views.addcategoryworker,name='addcategoryworker'),
-
-      path('addcatworker',views.addcatworker,name='addcatworker'),
-
+   
       path('addserviceworker',views.addserviceworker,name='addserviceworker'),
       path('addservice2',views.addservice2,name='addservice2'),
+      path('feedback/<int:pk>',views.feedback,name='feedback'),
+      path('rating/<int:pk>',views.rating,name='rating'),
+      path('viewfeedback',views.viewfeedback,name='viewfeedback'),
+      path('viewcategoryfeedbackadmin/<int:service_id>',views.viewcategoryfeedbackadmin,name='viewcategoryfeedbackadmin'),
 
+
+      path('workercardworker/<int:pk>',views.workercardworker,name='workercardworker'),
+      path('viewfeedbackworker',views.viewfeedbackworker,name='viewfeedbackworker'),
+      path('viewprodworker',views.viewprodworker,name='viewprodworker'),
+      path('update_passwordworker',views.update_passwordworker,name='update_passwordworker'),
+      path('serviceedit/<int:service_id>',views.serviceedit,name='serviceedit'),
+      path('serviceedit1/<int:service_id>',views.serviceedit1,name='serviceedit1'),
+      path('my_services',views.my_services,name='my_services'),
+      path('delservice/<int:pk>',views.delservice,name='delservice'),
+      path('usercardbyworker/<int:user_id>',views.usercardbyworker,name='usercardbyworker'),
+
+      path('usercardbyuser/<int:pk>',views.usercardbyuser,name='usercardbyuser'),
+      path('workercardbyuser/<int:pk>',views.workercardbyuser,name='workercardbyuser'),
+      path('update_passworduser',views.update_passworduser,name='update_passworduser'),
+      path('viewfeedbackuser/<int:service_id>',views.viewfeedbackuser,name='viewfeedbackuser'),
+      path('usercategory/<int:category_id>/', views.usercategory, name='usercategory'),
+      path('service-provider-history/<int:worker_id>/', views.service_provider_history, name='service_provider_history'),
+      path('search/', views.search_service_provider, name='search_service_provider'),
+      path('complete-task', views.complete_task, name='complete_task'),
+      path('view_posted_services/<int:worker_id>',views.view_posted_services,name='view_posted_services'),
+      path('search_by_category',views.search_by_category,name='search_by_category'),
+      path('viewcategories/', views.view_categories, name='view_categories'),
+     
+      path('adminnotifications',views.adminnotifications,name='adminnotifications'),
+      path('save_new_category',views.save_new_category,name='save_new_category'),
+
+      path('delete_category_request',views.delete_category_request,name='delete_category_request'),
+
+
+       
 ]

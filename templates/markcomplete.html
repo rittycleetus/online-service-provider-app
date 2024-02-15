@@ -1,0 +1,32 @@
+{% extends 'navbar3.html' %}
+{% block content %}
+{% load static %}
+<script>
+    function confirmCompletion() {
+        return confirm("Are you sure you want to mark this task as completed?");
+    }
+</script>
+<body>
+    <h1>Confirm Task Completion</h1>
+
+    <form method="post" action="">
+        {% csrf_token %}
+        <p style="font-size: larger;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+            Are you sure you want to mark this task as completed?
+        </p>
+        <input type="submit" value="Confirm" onclick="return confirmCompletion()">
+    </form>
+
+
+
+    <script>
+        function completeTask(bookingId) {
+            if (confirmCompletion()) {
+                // Perform completion action using AJAX or other method as needed
+                alert("Task marked as completed!");
+                // You can redirect or perform other actions here if needed
+            }
+        }
+    </script>
+</body>
+{% endblock %}

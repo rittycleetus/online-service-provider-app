@@ -1,63 +1,53 @@
-
-
-
-{% extends 'navbar2.html' %}
+{% extends 'navbar4.html' %}
 {% block content %}
 {% load static %}
 <br><br><br>
 
-
-<style>
-    body{
-        background-image: url('{% static "images/images.jpg" %}');
-        background-repeat: no-repeat;
-        background-size: cover;
-
-    }
-    label{
-        color: beige;
-    }
-    </style>
-    <body>
-        <h1 style="color: bisque;"><u>BOOKING FORM</u></h1>
-    <form action="{% url 'bookit1' q.id %}" method="post">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1><u>BOOKING FORM</u></h1>
+      <br>
+      <form action="{% url 'bookit1' q.id %}" method="post">
         {% csrf_token %}
 
+        <div class="form-group">
+          <label>Service name</label><br>
+          <input type="text" value="{{q.title}}" class="form-control" readonly>
+        </div>
 
+        <div class="form-group">
+          <label>When do you want the service?</label><br>
+          <input type="date" name="day" class="form-control" required>
+        </div>
 
-        <label>Service name</label><br>
-        <input type="text" value="{{q.title}}"><br>
-        <br>
-        <br>
-        
-    <label>When do you want the service?</label><br>
-    <input type="date" name="day">
-    <br>
+        <div class="form-group">
+          <label>Where do you want the service?</label><br>
+          <input type="text" name="address" placeholder="Address" class="form-control" required>
+        </div>
 
-        <br>
-   <br>
-    
-    <label>Where do you want the service?</label><br>
-    <input type="text" name="address" placeholder="address"><br><br>
-    <br>
-  
-<button type="submit" value="submit" class="btn-primary">BOOK</button>
+        <button type="submit" class="btn btn-primary">BOOK</button>
+      </form>
 
-</form>
-{% if error == "no" %}
+      {% if error == "no" %}
+      <script>
+        alert('Successfully booked. Please wait for approval');
+        window.location = ("{% url 'myorderview' %}");
+      </script>
+      {% endif %}
+
+      {% if error == "yes" %}
+      <script>
+        alert('Something went wrong, Try Again');
+      </script>
+      {% endif %}
+    </div>
+  </div>
+</div>
 <script>
-  alert('Successfully booked.  Please wait for approval');
-  window.location=("{% url 'nofitr' %}");
+  $(document).ready(function(){
+    $('[name="day"]').datepicker();
+  });
 </script>
-{% endif %}
 
-{% if error == "yes" %}
-<script>
-   alert('Something went wrong, Try Again');
-</script>
-{% endif %}
-
-{% endblock%}
-
-</body>
-</html>
+{% endblock %}
