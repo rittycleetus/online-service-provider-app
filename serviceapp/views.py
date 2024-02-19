@@ -1264,3 +1264,4 @@ def delete_category_request(request):
 
     
     return redirect('show_notification')
+
